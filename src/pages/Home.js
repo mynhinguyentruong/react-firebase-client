@@ -9,14 +9,14 @@ export default function Home() {
 
   const [allScreams, setAllScreams] = useState(null)
 
-  // useEffect(() => {
-  //   axios.get('/screams')
-  //     .then(res => {
-  //       console.log(res.data)
-  //       setAllScreams(res.data)
-  //     })
-  //     .catch(err => console.log(err))
-  // }, [])
+  useEffect(() => {
+    axios.get('/screams')
+      .then(res => {
+        console.log(res.data)
+        setAllScreams(res.data)
+      })
+      .catch(err => console.log(err))
+  }, [])
 
   let recentScreamsMarkup = allScreams?.map(scream => <Scream key={scream.screamId} />)
 
