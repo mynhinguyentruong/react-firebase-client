@@ -1,9 +1,12 @@
 import Grid from '@material-ui/core/Grid'
+
 import axios from 'axios'
 
 import { useEffect, useState } from 'react'
 
 import Scream from '../components/Scream'
+
+
 
 export default function Home() {
 
@@ -18,7 +21,8 @@ export default function Home() {
       .catch(err => console.log(err))
   }, [])
 
-  let recentScreamsMarkup = allScreams?.map(scream => <Scream key={scream.screamId} />)
+  let recentScreamsMarkup = allScreams?.map(scream => <Scream key={scream.screamId} {...scream} />)
+
 
   return (
     <Grid container spacing={10}>
