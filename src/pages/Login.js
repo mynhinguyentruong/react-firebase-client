@@ -9,6 +9,10 @@ import AppIcon from '../images/monkey-icon.png'
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
+
 const useStyles = makeStyles(() => ({
   root: {
 
@@ -23,6 +27,7 @@ const useStyles = makeStyles(() => ({
     margin: '10px auto 10px auto',
   },
   button: {
+    marginTop: '20px'
   }
 }))
 
@@ -30,13 +35,31 @@ export default function Login() {
   const [form, setForm] = useState({
     email: '',
     password: '',
-    loading: false,
-    errors: {}
   })
+  console.log(form)
+  const [error, setError] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
+
+  let navigate = useNavigate();
+  
+
+
   const classes = useStyles()
+  // console.log(classes)
 
   function handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
+    setIsLoading(true)
+    axios.post('/login', form)
+      .then(res => {
+        setIsLoading(true)
+        navigate('/')
+      })
+      .catch(err => {
+        console.log(err)
+        setError(err.response.data)
+        setIsLoading(false)
+      })
   }
 
   function handleChange(e) {
@@ -53,13 +76,15 @@ export default function Login() {
         </Typography>
         <div style={{ maxWidth: 800, display: 'block', marginInline: 'auto' }}>
         <Box component="div">
-        <form onSubmit={handleSubmit}>
+        <form noValidate onSubmit={handleSubmit}>
           <TextField 
             id='email' 
             name='email' 
             type="email" 
             label="Email" 
             className={classes.textField} 
+            error={error.email ? true : false}
+            helperText={error.email}
             value={form.email}
             onChange={handleChange}
             fullWidth/>
@@ -69,11 +94,13 @@ export default function Login() {
             type="password" 
             label="Password" 
             className={classes.textField} 
+            error={error.password ? true : false}
+            helperText={error.password}
             value={form.password}
             onChange={handleChange}
             fullWidth
             />
-          <Button variant="contained" color="primary" className={classes.button}>Login</Button>
+          <Button type='submit' variant="contained" color="primary" className={classes.button}>Login</Button>
         </form>
         </Box>
         </div>
@@ -81,6 +108,6 @@ export default function Login() {
   )
 }
 
-Login.propTypes = {
-  classes: PropTypes.object.isRequired
-}
+// Login.propTypes = {
+//   classes: PropTypes.object.isRequired
+// }
