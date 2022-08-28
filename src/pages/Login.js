@@ -52,6 +52,7 @@ export default function Login() {
     setIsLoading(true)
     axios.post('/login', form)
       .then(res => {
+        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`)
         setIsLoading(true)
         navigate('/')
       })
