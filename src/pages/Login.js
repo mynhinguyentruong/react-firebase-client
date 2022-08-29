@@ -36,7 +36,7 @@ export default function Login() {
     email: '',
     password: '',
   })
-  console.log(form)
+  // console.log(form)
   const [error, setError] = useState({})
   const [isLoading, setIsLoading] = useState(false)
 
