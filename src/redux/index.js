@@ -9,6 +9,9 @@ export const store = configureStore({
   reducer: {
       // define a global state
       // pass a reducer to determine the value of the state
+      user: userReducer,
+      data: dataReducer,
+      ui: uiReducer
   }
 
 })
