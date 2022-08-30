@@ -1,6 +1,6 @@
 // Add and export action
 
-function userReducer(state, action) {
+function dataReducer(state, action) {
   switch(action.type) {
     case '':
       return //update state
@@ -9,4 +9,4 @@ function userReducer(state, action) {
   }
 }
 
-export default userReducer
+export default dataReducer
