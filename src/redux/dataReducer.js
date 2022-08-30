@@ -1,9 +1,83 @@
 // Add and export action
+function loadingData() {
+  return { type: "LOADING_DATA" }
+}
 
-function dataReducer(state, action) {
+function setScreams() {
+
+}
+
+function setScream() {
+
+}
+
+function likeScream() {
+
+}
+
+function unlikeScream() {
+
+}
+
+function deleteScream() {
+
+}
+
+function postScream() {
+
+}
+
+function submitComment() {
+  
+}
+
+const initialState = {
+  screams: [],
+  scream: {},
+  loading: false
+}
+
+function dataReducer(state = initialState, action) {
   switch(action.type) {
-    case '':
-      return //update state
+    case 'LOADING_DATA':
+      return {
+        ...state, loading: true
+      }
+    case 'SET_SCREAMS':
+      return {
+        ...state,
+        screams: action.payload,
+        loading: false
+      }
+    case 'SET_SCREAM':
+      return {
+        ...state,
+        scream: action.payload
+      }
+    case 'LIKE_SCREAM':
+    case 'UNLIKE_SCREAM':
+      let index = state.screams.findIndex(scream => scream.screamId === action.payload.screamId)
+      state.screams[index] = action.payload
+      if (state.scream.screamId === action.payload.screamId) {
+        state.scream = action.payload
+      }
+      return {...state}
+    case 'DELETE_SCREAM':
+      const newScreams = state.screams.filter(scream => scream.screamId !== action.payload)
+      return {...state, screams: newScreams}
+    case 'POST_SCREAM':
+      return {
+        ...state,
+        screams: [action.payload, ...state.screams]
+      }
+    case 'SUBMIT_COMMENT':
+      return {
+        ...state,
+        scream: {
+          ...state.scream,
+          comments: [action.payload, ...state.scream.comments]
+        }
+      }
     default:
       return state
   }
