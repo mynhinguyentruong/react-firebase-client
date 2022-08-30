@@ -9,9 +9,10 @@ import AppIcon from '../images/monkey-icon.png'
 // import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
+import { signupUser } from '../redux/userReducer';
+import { useSelector, useDispatch } from 'react-redux';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -38,11 +39,11 @@ export default function Signup() {
     confirmPassword: '',
     handle: ''
   })
-  const [error, setError] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
 
   let navigate = useNavigate();
-  
+  const dispatch = useDispatch();
+  const { errors } = useSelector(state => state.ui)
+  const user = useSelector(state => state.user)
 
 
   const classes = useStyles();
@@ -50,18 +51,7 @@ export default function Signup() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setIsLoading(true)
-    axios.post('/signup', form)
-      .then(res => {
-        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`)
-        setIsLoading(true)
-        navigate('/')
-      })
-      .catch(err => {
-        console.log(err)
-        setError(err.response.data)
-        setIsLoading(false)
-      })
+    dispatch(signupUser(form, navigate))
   }
 
   function handleChange(e) {
@@ -85,8 +75,8 @@ export default function Signup() {
               type="email" 
               label="Email" 
               className={classes.textField} 
-              error={error.email ? true : false}
-              helperText={error.email}
+              error={errors.email ? true : false}
+              helperText={errors.email}
               value={form.email}
               onChange={handleChange}
               fullWidth/>
@@ -96,8 +86,8 @@ export default function Signup() {
               type="password" 
               label="Password" 
               className={classes.textField} 
-              error={error.password ? true : false}
-              helperText={error.password}
+              error={errors.password ? true : false}
+              helperText={errors.password}
               value={form.password}
               onChange={handleChange}
               fullWidth
@@ -108,8 +98,8 @@ export default function Signup() {
               type="confirmPassword" 
               label="Confirm Password" 
               className={classes.textField} 
-              error={error.confirmPassword ? true : false}
-              helperText={error.confirmPassword}
+              error={errors.confirmPassword ? true : false}
+              helperText={errors.confirmPassword}
               value={form.confirmPassword}
               onChange={handleChange}
               fullWidth
@@ -120,8 +110,8 @@ export default function Signup() {
               type="handle" 
               label="Handle" 
               className={classes.textField} 
-              error={error.handle ? true : false}
-              helperText={error.handle}
+              error={errors.handle ? true : false}
+              helperText={errors.handle}
               value={form.handle}
               onChange={handleChange}
               fullWidth
