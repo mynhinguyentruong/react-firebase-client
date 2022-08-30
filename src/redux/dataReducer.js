@@ -1,35 +1,138 @@
+import axios from "axios"
+
 // Add and export action
-function loadingData() {
+export function loadingData() {
   return { type: "LOADING_DATA" }
 }
 
-function setScreams() {
-
+export function getScreams() {
+  return function(dispatch) {
+    dispatch(loadingData())
+    axios
+      .get('/screams')
+      .then(res => {
+        dispatch({
+          type: "SET_SCREAMS",
+          payload: res.data
+        })
+      })
+      .catch(err => {
+        dispatch({
+          type: "SET_SCREAMS",
+          payload: []
+        })
+      })
+  }
 }
 
-function setScream() {
-
+export function getOneScream(screamId) {
+  return function(dispatch) {
+    dispatch({ type: "LOADING_UI" })
+    axios
+      .get(`/scream/${screamId}`)
+      .then(res => {
+        dispatch({
+          type: "SET_SCREAM",
+          payload: res.data
+        })
+        dispatch({ type: "STOP_LOADING_UI" })
+      })
+      .catch(err => console.log(err))
+  }
 }
 
-function likeScream() {
-
+export function postScream(newScream) {
+  return function(dispatch) {
+    dispatch({ type: "LOADING_UI" })
+    axios
+      .post('/scream', newScream)
+      .then(res => {
+        dispatch({
+          type: "POST_SCREAM",
+          payload: res.data
+        })
+      })
+      .catch(err => dispatch({
+        type: "SET_ERRORS",
+        payload: err.response.data
+      }))
+  }
 }
 
-function unlikeScream() {
-
+export function likeScream(screamId) {
+  return function(dispatch) {
+    axios
+      .get(`/scream/${screamId}/like`)
+      .then(res => dispatch({
+        type: "LIKE_SCREAM",
+        payload: res.data
+      }))
+      .catch(err => console.log(err))
+  }
 }
 
-function deleteScream() {
-
+export function unlikeScream(screamId) {
+  return function(dispatch) {
+    axios
+      .get(`/scream/${screamId}/unlike`)
+      .then(res => dispatch({
+        type: "UNLIKE_SCREAM",
+        payload: res.data
+      }))
+      .catch(err => console.log(err))
+  }
 }
 
-function postScream() {
-
+export function deleteScream(screamId) {
+  return function(dispatch) {
+    axios
+      .delete(`/scream/${screamId}`)
+      .then(() => dispatch({
+        type: "DELETE_SCREAM",
+        payload: screamId
+      }))
+  }
 }
 
-function submitComment() {
-  
+export function submitComment(screamId, commentData) {
+  return function(dispatch) {
+    axios
+      .post(`/scream/${screamId}/comment`, commentData)
+      .then(res => {
+        dispatch({
+        type: "SUBMIT_COMMENT",
+        payload: res.data
+        })
+        dispatch({type: "CLEAR_ERRORS"}) 
+      })
+      .catch(err => dispatch({
+        type: "SET_ERRORS",
+        payload: err.response.data
+      }))
+  }
 }
+
+export function getUserData(userHandle) {
+  return function(dispatch) {
+    dispatch(loadingData())
+    axios
+      .get(`/user/${userHandle}`)
+      .then(res => dispatch({
+        type: "SET_SCREAMS",
+        payload: res.data.screams
+      }))
+      .catch(() => dispatch({
+        type: "SET_SCREAMS",
+        payload: null
+      }))
+  }
+}
+
+// export function clearErrors() {
+//   return function(dispatch) {
+//     dispatch({ type: "CLEAR_ERRORS" })
+//   }
+// }
 
 const initialState = {
   screams: [],
