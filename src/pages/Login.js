@@ -6,11 +6,13 @@ import Button from '@material-ui/core/Button';
 
 import AppIcon from '../images/monkey-icon.png'
 
-import PropTypes from 'prop-types';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+
+import { loginUser } from '../redux/userReducer';
+import { useSelector, useDispatch } from 'react-redux';
 
 
 const useStyles = makeStyles(() => ({
@@ -37,30 +39,18 @@ export default function Login() {
     password: '',
   })
   // console.log(form)
-  const [error, setError] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
 
   let navigate = useNavigate();
   
-
+  const dispatch = useDispatch();
+  const { isLoading, errors } = useSelector(state => state.ui)
 
   const classes = useStyles()
   // console.log(classes)
 
   function handleSubmit(e) {
     e.preventDefault();
-    setIsLoading(true)
-    axios.post('/login', form)
-      .then(res => {
-        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`)
-        setIsLoading(true)
-        navigate('/')
-      })
-      .catch(err => {
-        console.log(err)
-        setError(err.response.data)
-        setIsLoading(false)
-      })
+    dispatch(loginUser(form, navigate))
   }
 
   function handleChange(e) {
@@ -84,8 +74,8 @@ export default function Login() {
             type="email" 
             label="Email" 
             className={classes.textField} 
-            error={error.email ? true : false}
-            helperText={error.email}
+            error={errors.email ? true : false}
+            helperText={errors.email}
             value={form.email}
             onChange={handleChange}
             fullWidth/>
@@ -95,8 +85,8 @@ export default function Login() {
             type="password" 
             label="Password" 
             className={classes.textField} 
-            error={error.password ? true : false}
-            helperText={error.password}
+            error={errors.password ? true : false}
+            helperText={errors.password}
             value={form.password}
             onChange={handleChange}
             fullWidth
@@ -109,6 +99,6 @@ export default function Login() {
   )
 }
 
-// Login.propTypes = {
-//   classes: PropTypes.object.isRequired
-// }
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired
+}

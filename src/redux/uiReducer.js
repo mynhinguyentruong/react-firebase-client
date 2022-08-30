@@ -1,7 +1,7 @@
 // Add and export action
 
 const initialState = {
-  loading: false,
+  isLoading: false,
   errors: null
 }
 
@@ -10,24 +10,24 @@ function uiReducer(state = initialState, action) {
     case 'SET_ERRORS':
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         errors: action.payload
       } 
     case 'CLEAR_ERRORS':
       return {
         ...state,
-        loading: false,
+        isLoading: false,
         errors: null
       }
     case 'LOADING_UI':
       return {
         ...state,
-        loading: true
+        isLoading: true
       }
     case 'STOP_LOADING_UI':
       return {
         ...state,
-        loading: false
+        isLoading: false
       }
     default:
       return state
