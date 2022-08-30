@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 // TODO: import other reducer into this folder
-import userReducer from './userReducer';
-import dataReducer from './dataReducer';
+import userReducer from './dataReducer';
+import dataReducer from './userReducer';
 import uiReducer from './uiReducer';
 
 export const store = configureStore({

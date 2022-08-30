@@ -1,12 +1,12 @@
-// Add and export action creator
+// Add and export action
 
-function dataReducer(state, action) {
+function userReducer(state, action) {
   switch(action.type) {
     case '':
-      return //something
+      return //update state
     default:
       return state
   }
 }
 
-export default dataReducer
+export default userReducer
