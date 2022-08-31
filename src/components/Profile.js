@@ -7,7 +7,9 @@ import LocationOn from "@material-ui/icons/LocationOn";
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from "@material-ui/icons/CalendarToday";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-
+import Tooltip from "@material-ui/core/Tooltip";
+import IconButton from "@material-ui/core/IconButton";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 
 import { useSelector, useDispatch } from "react-redux";
@@ -89,6 +91,9 @@ export default function Profile() {
     // keep getting 400 error, will fix later
   }
 
+  function handleLogout() {
+    dispatch(logoutUser())
+  }
   
 
   const profileMarkup = !loading ? 
@@ -139,6 +144,11 @@ export default function Profile() {
           <CalendarToday color="primary"/>{' '}
           <span>Joined {dayjs(credentials.createdAt).format('MMM YYYY')}</span>
         </div>
+        <Tooltip title="Logout" placement="top-start" arrow>
+          <IconButton color="primary" aria-label="log out" component="span" onClick={handleLogout}>
+            <ExitToAppIcon />
+          </IconButton>
+        </Tooltip>
       </div>
     </Paper>
   ) : (

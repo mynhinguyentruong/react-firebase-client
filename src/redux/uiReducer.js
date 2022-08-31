@@ -17,7 +17,7 @@ export default function uiReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        errors: null
+        errors: {}
       }
     case 'LOADING_UI':
       return {
