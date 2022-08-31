@@ -140,7 +140,7 @@ const initialState = {
   loading: false
 }
 
-function dataReducer(state = initialState, action) {
+export default function dataReducer(state = initialState, action) {
   switch(action.type) {
     case 'LOADING_DATA':
       return {
@@ -185,5 +185,3 @@ function dataReducer(state = initialState, action) {
       return state
   }
 }
-
-export default dataReducer

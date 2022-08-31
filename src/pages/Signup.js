@@ -95,7 +95,7 @@ export default function Signup() {
             <TextField 
               id='confirmPassword' 
               name='confirmPassword' 
-              type="confirmPassword" 
+              type="password" 
               label="Confirm Password" 
               className={classes.textField} 
               error={errors.confirmPassword ? true : false}

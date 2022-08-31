@@ -116,7 +116,7 @@ const initialState = {
   notifications: []
 }
 
-function userReducer(state = initialState, action) {
+export default function userReducer(state = initialState, action) {
   switch(action.type) {
     case 'SET_AUTHENTICATED':
       return {
@@ -164,5 +164,3 @@ function setAuthorizationHeader(token) {
   localStorage.setItem('FBIdToken', FBIdToken)
   axios.defaults.headers.common['Authorization'] = FBIdToken
 }
-
-export default userReducer
