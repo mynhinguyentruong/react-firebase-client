@@ -6,10 +6,8 @@ import Button from '@material-ui/core/Button';
 
 import AppIcon from '../images/monkey-icon.png'
 
-import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 import { useSelector, useDispatch } from 'react-redux';
