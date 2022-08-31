@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
 
 import AppIcon from '../images/monkey-icon.png'
 
@@ -40,7 +42,7 @@ export default function Login() {
   // console.log(form)
   const [error, setError] = useState({})
 
-  const { isLoading } = useSelector(state => state.ui)
+  const { isLoading, errors } = useSelector(state => state.ui)
 
   let navigate = useNavigate();
   const dispatch = useDispatch()
@@ -76,8 +78,8 @@ export default function Login() {
             type="email" 
             label="Email" 
             className={classes.textField} 
-            error={error.email ? true : false}
-            helperText={error.email}
+            error={errors.error ? true : false}
+            helperText={errors.error}
             value={form.email}
             onChange={handleChange}
             fullWidth/>
@@ -93,6 +95,8 @@ export default function Login() {
             onChange={handleChange}
             fullWidth
             />
+          {isLoading && (<><LinearProgress />
+            <LinearProgress color="secondary" /></>)}
           <Button type='submit' variant="contained" color="primary" className={classes.button}>Login</Button>
         </form>
         </Box>
