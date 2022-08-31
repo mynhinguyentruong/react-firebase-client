@@ -7,21 +7,19 @@ import { useEffect, useState } from 'react'
 import Scream from '../components/Scream'
 import Profile from '../components/Profile'
 
+import { useSelector, useDispatch } from 'react-redux';
+import { getScreams } from '../redux/dataReducer'
 
 export default function Home() {
 
-  const [allScreams, setAllScreams] = useState(null)
+  const dispatch = useDispatch()
+  const { screams, loading } = useSelector(state => state.data)
 
   useEffect(() => {
-    axios.get('/screams')
-      .then(res => {
-        console.log(res.data)
-        setAllScreams(res.data)
-      })
-      .catch(err => console.log(err))
+    dispatch(getScreams())
   }, [])
 
-  let recentScreamsMarkup = allScreams?.map(scream => <Scream key={scream.screamId} {...scream} />)
+  let recentScreamsMarkup = screams?.map(scream => <Scream key={scream.screamId} {...scream} />)
 
 
   return (
