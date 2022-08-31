@@ -2,7 +2,7 @@
 
 const initialState = {
   isLoading: false,
-  errors: null
+  errors: {}
 }
 
 function uiReducer(state = initialState, action) {

@@ -15,7 +15,7 @@ import { loginUser } from '../redux/userReducer';
 import { useSelector, useDispatch } from 'react-redux';
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
   root: {
 
   },
@@ -31,7 +31,7 @@ const useStyles = makeStyles(() => ({
   button: {
     marginTop: '20px'
   }
-}))
+})
 
 export default function Login() {
   const [form, setForm] = useState({

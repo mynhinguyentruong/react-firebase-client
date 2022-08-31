@@ -25,7 +25,7 @@ export default function Home() {
 
 
   return (
-    <Grid container spacing={10}>
+    <Grid container spacing={2}>
       <Grid item sm={8} xs={12}>
         {recentScreamsMarkup ? recentScreamsMarkup : 'Loading...'}
       </Grid>

@@ -13,11 +13,14 @@ import { setAuthenticated, logoutUser, getUserData } from './redux/userReducer';
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios';
 
-const dispatch = useDispatch()
 
-const token = localStorage.FBIdToken;
-if(token) {
-  const decoded = jwtDecode(token);
+
+function App() {
+  const dispatch = useDispatch()
+
+  const token = localStorage.FBIdToken;
+  if(token) {
+    const decoded = jwtDecode(token);
   if(decoded.exp*1000 < Date.now()) {
     dispatch(logoutUser())
     window.location.href = '/login'
@@ -29,8 +32,6 @@ if(token) {
   }
 }
 
-function App() {
-
   const { authenticated } = useSelector(state => state.user)
 
   return (
@@ -41,7 +42,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={ authenticated ? <Navigate to='/' replace /> : <Login />} />
         <Route path='/signup' element={ authenticated ? <Navigate to='/' replace/> : <Signup />} />
-    
+
       </Routes>
     </div>
   );
