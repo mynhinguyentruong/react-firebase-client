@@ -17,7 +17,8 @@ import axios from 'axios';
 
 function App() {
   const dispatch = useDispatch()
-
+  const { authenticated } = useSelector(state => state.user)
+  
   const token = localStorage.FBIdToken;
   if(token) {
     const decoded = jwtDecode(token);
@@ -32,7 +33,7 @@ function App() {
   }
 }
 
-  const { authenticated } = useSelector(state => state.user)
+
 
   return (
     <div className='container'>
