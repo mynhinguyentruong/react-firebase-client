@@ -12,6 +12,9 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
+import { useSelector, useDispatch } from 'react-redux';
+import { loginUser } from '../redux/userReducer'
+
 
 const useStyles = makeStyles({
   root: {
@@ -38,9 +41,11 @@ export default function Login() {
   })
   // console.log(form)
   const [error, setError] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
+
+  const { isLoading } = useSelector(state => state.ui)
 
   let navigate = useNavigate();
+  const dispatch = useDispatch()
   
 
 
@@ -49,18 +54,7 @@ export default function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setIsLoading(true)
-    axios.post('/login', form)
-      .then(res => {
-        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`)
-        setIsLoading(true)
-        navigate('/')
-      })
-      .catch(err => {
-        console.log(err)
-        setError(err.response.data)
-        setIsLoading(false)
-      })
+    dispatch(loginUser(form, navigate))
   }
 
   function handleChange(e) {

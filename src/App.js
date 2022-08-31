@@ -1,7 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import PropTypes from 'prop-types'
-
 import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
@@ -18,20 +16,20 @@ import axios from 'axios';
 function App() {
   const dispatch = useDispatch()
   const { authenticated } = useSelector(state => state.user)
-  
-  const token = localStorage.FBIdToken;
-  if(token) {
-    const decoded = jwtDecode(token);
-  if(decoded.exp*1000 < Date.now()) {
-    dispatch(logoutUser())
-    window.location.href = '/login'
 
-  } else {
-    dispatch(setAuthenticated())
-    axios.defaults.headers.common['Authorization'] = token
-    dispatch(getUserData())
-  }
-}
+  const token = localStorage.FBIdToken;
+//   if(token) {
+//     const decoded = jwtDecode(token);
+//   if(decoded.exp*1000 < Date.now()) {
+//     dispatch(logoutUser())
+//     window.location.href = '/login'
+
+//   } else {
+//     dispatch(setAuthenticated())
+//     axios.defaults.headers.common['Authorization'] = token
+//     dispatch(getUserData())
+//   }
+// }
 
 
 
@@ -50,7 +48,3 @@ function App() {
 }
 
 export default App;
-
-App.propTypes = {
-  authenticated: PropTypes.bool.isRequired
-}
