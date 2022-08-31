@@ -9,11 +9,14 @@ import CalendarToday from "@material-ui/icons/CalendarToday";
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 
+
 import { useSelector, useDispatch } from "react-redux";
+import { uploadImage, logoutUser, getUserData } from '../redux/userReducer'
 
 import { Link as RouterLink} from 'react-router-dom';
 
 import dayjs from "dayjs";
+import axios from "axios";
 
 const useStyles = makeStyles({
   uploadButton: {
@@ -75,6 +78,16 @@ export default function Profile() {
   //   if (authenticated) return state.user.credentials.handle
   //   return null
   // })
+  function handleImageChange(e) {
+    console.log(e.target)
+    const image = e.target.files[0]
+    console.log(image)
+    const formData = new FormData()
+    console.log(formData)
+    formData.append('image', image)
+
+    // keep getting 400 error, will fix later
+  }
 
   
 
@@ -91,6 +104,7 @@ export default function Profile() {
               id="contained-button-file"
               multiple
               type="file"
+              onChange={handleImageChange}
             />
             <label htmlFor="contained-button-file">
               <Button className={classes.uploadButton} size="small" variant="contained" color="primary" component="span" startIcon={<CloudUploadIcon />}>
