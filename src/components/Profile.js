@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import LocationOn from "@material-ui/icons/LocationOn";
 import LinkIcon from '@material-ui/icons/Link';
 import CalendarToday from "@material-ui/icons/CalendarToday";
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 
 
 import { useSelector, useDispatch } from "react-redux";
@@ -15,6 +16,9 @@ import { Link as RouterLink} from 'react-router-dom';
 import dayjs from "dayjs";
 
 const useStyles = makeStyles({
+  uploadButton: {
+    marginTop: '10px'
+  },
   paper: {
     padding: 20
   },
@@ -80,6 +84,20 @@ export default function Profile() {
       <div className={classes.profile}>
         <div className="image-wrapper">
           <img className="profile-image" src={credentials.imageUrl} alt="user profile"/>
+          <div>
+            <input
+              accept="image/*"
+              style={{display: 'none'}}
+              id="contained-button-file"
+              multiple
+              type="file"
+            />
+            <label htmlFor="contained-button-file">
+              <Button className={classes.uploadButton} size="small" variant="contained" color="primary" component="span" startIcon={<CloudUploadIcon />}>
+                Upload
+              </Button>
+            </label>
+          </div>
         </div>
         <hr/>
         <div className="profile-details">
