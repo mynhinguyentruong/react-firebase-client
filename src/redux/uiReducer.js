@@ -10,24 +10,24 @@ export default function uiReducer(state = initialState, action) {
     case 'SET_ERRORS':
       return {
         ...state,
-        isLoading: false,
+        loading: false,
         errors: action.payload
       } 
     case 'CLEAR_ERRORS':
       return {
         ...state,
-        isLoading: false,
+        loading: false,
         errors: null
       }
     case 'LOADING_UI':
       return {
         ...state,
-        isLoading: true
+        loading: true
       }
     case 'STOP_LOADING_UI':
       return {
         ...state,
-        isLoading: false
+        loading: false
       }
     default:
       return state
