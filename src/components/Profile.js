@@ -98,9 +98,9 @@ export default function Profile() {
           {credentials.website && (
             <>
               <LinkIcon color="primary"/>
-              <a href={credentials.website} target="_blank" rel="noopener noreferrer">
+              <Link href={credentials.website} target="_blank" rel="noopener noreferrer">
                 {' '}{credentials.website}
-              </a>
+              </Link>
               <hr/>
             </>
           )}
