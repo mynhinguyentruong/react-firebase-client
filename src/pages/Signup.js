@@ -3,6 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
 
 import AppIcon from '../images/monkey-icon.png'
 
@@ -17,7 +19,7 @@ import { signupUser } from '../redux/userReducer'
 
 const useStyles = makeStyles({
   root: {
-
+    
   },
   image: {
     margin: '20px auto 20px auto'
@@ -35,8 +37,7 @@ const useStyles = makeStyles({
 
 export default function Signup() {
   const dispatch = useDispatch()
-  const { errors } = useSelector(state => state.ui)
-  
+  const { isLoading, errors } = useSelector(state => state.ui)
 
   const [form, setForm] = useState({
     email: '',
@@ -120,6 +121,10 @@ export default function Signup() {
               onChange={handleChange}
               fullWidth
               />
+            { isLoading && (<>
+            <LinearProgress />
+            <LinearProgress color="secondary" />
+            </>)}
             <Button type='submit' variant="contained" color="primary" className={classes.button}>Sign up</Button>
           </form>
           </Box>
