@@ -1,7 +1,6 @@
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
-import CardActionArea from '@material-ui/core/CardActionArea';
 import Typography from "@material-ui/core/Typography";
 import makeStyles  from "@material-ui/styles/makeStyles";
 //MUI ICON
@@ -19,6 +18,7 @@ import MyButton from "../utils/MyButton";
 import { unlikeScream, likeScream } from "../redux/dataReducer";
 
 import DeleteDialog from "./DeleteDialog";
+import ScreamDialog from './ScreamDialog'
 
 const useStyles = makeStyles({
   root: {
@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   }
 })
 
-function Scream({  body, createdAt, userImage, userHandle, commentCount, likeCount, screamId }) {
+function Scream({  body, createdAt, userImage, userHandle, commentCount, likeCount, screamId, scream }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const classes = useStyles();
@@ -86,8 +86,9 @@ function Scream({  body, createdAt, userImage, userHandle, commentCount, likeCou
           <ChatIcon color="primary"/>
         </MyButton>
         <span>{commentCount} Comments</span>
+        <ScreamDialog {...scream} />
       </CardContent>
-      {isOwner && <DeleteDialog screamId={screamId} />}
+      {isOwner && <DeleteDialog  />}
     </Card>
   )
 }
