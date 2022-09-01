@@ -1,4 +1,7 @@
 // Add and export action
+export function clearErrors() {
+  return { type: "CLEAR_ERRORS"}
+}
 
 const initialState = {
   isLoading: false,

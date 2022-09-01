@@ -51,6 +51,7 @@ export function postScream(newScream) {
           type: "POST_SCREAM",
           payload: res.data
         })
+        dispatch({ type: "CLEAR_ERRORS" });
       })
       .catch(err => dispatch({
         type: "SET_ERRORS",
