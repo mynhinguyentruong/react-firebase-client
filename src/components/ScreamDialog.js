@@ -1,4 +1,5 @@
 import MyButton from "../utils/MyButton";
+import LikeButton from "./LikeButton";
 import makeStyles  from "@material-ui/styles/makeStyles";
 // MUI 
 import Dialog from '@material-ui/core/Dialog';
@@ -37,10 +38,14 @@ const useStyles = makeStyles({
     textAlign: 'center',
     marginTop: 50,
     marginBottom: 50
+  },
+  invisibleSeparator: {
+    border: 'none',
+    margin: 4
   }
 })
 
-export default function ScreamDialog({ body, createdAt, userImage, userHandle, commentCount, likeCount, screamId }) {
+export default function ScreamDialog({ body, createdAt, userImage, userHandle, commentCount, likeCount, screamId, likedScream, authenticated }) {
   const [isOpen, setIsOpen] = useState(false)
   const { isLoading } = useSelector(state => state.ui)
   const dispatch = useDispatch()
@@ -101,7 +106,7 @@ export default function ScreamDialog({ body, createdAt, userImage, userHandle, c
           </Typography>
           <hr className={classes.invisibleSeparator} />
           <Typography variant="body1">{body}</Typography>
-          {/* <LikeButton screamId={screamId} /> */}
+          <LikeButton screamId={screamId} authenticated={authenticated} likedScream={likedScream} dispatch={dispatch} />
           <span>{likeCount} Likes</span>
           <MyButton tip="comments">
             <ChatIcon color="primary" />

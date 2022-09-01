@@ -5,8 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import makeStyles  from "@material-ui/styles/makeStyles";
 //MUI ICON
 import ChatIcon from '@material-ui/icons/Chat';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
+import LikeButton from './LikeButton'
 
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -74,19 +73,13 @@ function Scream({  body, createdAt, userImage, userHandle, commentCount, likeCou
         
         <Typography variant="body2" color="textSecondary" >{dayjs(createdAt).fromNow()}</Typography>
         <Typography variant="body1">{body}</Typography>
-        {likedScream && authenticated ? 
-          <MyButton tip="Like" onClick={setUnlikeScream}>
-            <FavoriteIcon color="primary" />
-          </MyButton> : 
-          <MyButton tip="Like" onClick={setLikeScream}>
-            <FavoriteBorderIcon color="primary" />
-          </MyButton>}
+        <LikeButton authenticated={authenticated} screamId={screamId} likedScream={likedScream} dispatch={dispatch} />
         <span>{likeCount} Likes</span>
         <MyButton tip="Comments">
           <ChatIcon color="primary"/>
         </MyButton>
         <span>{commentCount} Comments</span>
-        <ScreamDialog {...scream} />
+        <ScreamDialog {...scream} authenticated={authenticated} likedScream={likedScream}/>
       </CardContent>
       {isOwner && <DeleteDialog  />}
     </Card>

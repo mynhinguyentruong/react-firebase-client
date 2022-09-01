@@ -1,8 +1,7 @@
 import Grid from '@material-ui/core/Grid'
 
-import axios from 'axios'
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
 import Scream from '../components/Scream'
 import Profile from '../components/Profile'
@@ -28,7 +27,7 @@ export default function Home() {
       <Grid item sm={8} xs={12}>
         {loading ? <CircularProgress size={200} thickness={2}/> : recentScreamsMarkup }
       </Grid>
-      <Grid item sm={4} xs={12} >
+      <Grid item sm={4} xs={12} style={{marginTop: '10px'}}>
         <Profile />
       </Grid>
     </Grid>
