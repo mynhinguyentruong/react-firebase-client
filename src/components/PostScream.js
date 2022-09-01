@@ -12,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useState } from 'react';
 
 import { postScream } from '../redux/dataReducer';
-import { clearErrors } from '../redux/uiReducer';
+import { clearErrors, setBodyError } from '../redux/uiReducer';
 import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles({
@@ -37,7 +37,7 @@ export default function PostScream() {
   const [body, setBody] = useState('')
 
   const dispatch = useDispatch()
-  const { errors, isLoading } = useSelector(state => state.ui)
+  const { isLoading, errors } = useSelector(state => state.ui)
   const classes = useStyles()
 
   function handleClose() {
@@ -47,8 +47,11 @@ export default function PostScream() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    dispatch(postScream({ body }))
-    setBody('')
+    if (body.trim() !== '') {
+      dispatch(postScream({ body }))
+      setBody('')
+    }
+    else dispatch(setBodyError())
   }
 
   return (
@@ -58,13 +61,13 @@ export default function PostScream() {
     </MyButton>
     <Dialog
       open={isOpen}
-      onClose={()=>setIsOpen(false)}
+      onClose={handleClose}
       fullWidth
       maxWidth="sm"
     >
       <MyButton
         tip="Close"
-        onClick={()=>setIsOpen(false)}
+        onClick={handleClose}
         tipClassName={classes.closeButton}
       >
         <CloseIcon />
@@ -79,8 +82,8 @@ export default function PostScream() {
             multiline
             minRows="3"
             placeholder="What scream you would like to make today? 🤡"
-            error={errors?.body ? true : false}
-            helperText={errors?.body}
+            error={errors?.body && !body ? true : false}
+            helperText={!body && errors?.body}
             onChange={(e)=>setBody(e.target.value)}
             fullWidth
           />
