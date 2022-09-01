@@ -157,14 +157,16 @@ export default function dataReducer(state = initialState, action) {
         ...state,
         scream: action.payload
       }
-    case 'LIKE_SCREAM':
-    case 'UNLIKE_SCREAM':
-      let index = state.screams.findIndex(scream => scream.screamId === action.payload.screamId)
-      state.screams[index] = action.payload
-      if (state.scream.screamId === action.payload.screamId) {
-        state.scream = action.payload
+    case 'LIKE_SCREAM': 
+      return {
+        ...state,
+        screams: state.screams.map(scream => scream.screamId === action.payload.screamId ? {...scream, likeCount: scream.likeCount + 1} : scream)
       }
-      return {...state}
+    case 'UNLIKE_SCREAM':
+      return {
+        ...state,
+        screams: state.screams.map(scream => scream.screamId === action.payload.screamId ? {...scream, likeCount: scream.likeCount - 1} : scream)
+      }
     case 'DELETE_SCREAM':
       const newScreams = state.screams.filter(scream => scream.screamId !== action.payload)
       return {...state, screams: newScreams}
