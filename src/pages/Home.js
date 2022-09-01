@@ -9,6 +9,7 @@ import Profile from '../components/Profile'
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getScreams } from '../redux/dataReducer'
+import { CircularProgress } from '@material-ui/core'
 
 export default function Home() {
 
@@ -25,7 +26,7 @@ export default function Home() {
   return (
     <Grid container spacing={2}>
       <Grid item sm={8} xs={12}>
-        {recentScreamsMarkup ? recentScreamsMarkup : 'Loading...'}
+        {loading ? <CircularProgress size={200} thickness={2}/> : recentScreamsMarkup }
       </Grid>
       <Grid item sm={4} xs={12} >
         <Profile />
