@@ -20,7 +20,7 @@ export default function Home() {
     dispatch(getScreams())
   }, [])
 
-  let recentScreamsMarkup = screams?.map(scream => <Scream key={scream.screamId} {...scream} />)
+  let recentScreamsMarkup = screams?.map(scream => <Scream key={scream.screamId} {...scream} scream={scream} />)
 
 
   return (
