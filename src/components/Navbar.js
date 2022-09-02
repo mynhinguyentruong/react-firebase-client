@@ -3,7 +3,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import MyButton from '../utils/MyButton';
 import HomeIcon from '@material-ui/icons/Home';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import Notifications from './notifications/Notifications';
 
 import PostScream from './PostScream';
 
@@ -23,7 +23,7 @@ export default function Navbar() {
           <PostScream />
           <Button color="primary" component={Link} to='/' ><MyButton tip='Home' placement='bottom'><HomeIcon style={{ color: 'white' }}/></MyButton>
           </Button>
-          <Button color="primary" component={Link} to='/' ><MyButton tip='Home' placement='bottom'><NotificationsIcon style={{ color: 'white' }}/></MyButton>
+          <Button color="primary" component={Link} to='/' ><Notifications/>
           </Button>
         </>
         ) :

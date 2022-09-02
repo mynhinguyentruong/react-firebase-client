@@ -152,8 +152,11 @@ export default function userReducer(state = initialState, action) {
         likes: state.likes.filter(like => like.screamId !== action.payload.screamId)
       };
     case "MARK_NOTIFICATION_READ":
-      state.notifications.forEach(not => not.read = true)
-      return {...state};
+      const markRead = state.notifications.map(notif => notif.read ? notif : {...notif, read: true})
+      return {
+        ...state,
+        notifications: markRead
+      };
     default:
       return state
   }
