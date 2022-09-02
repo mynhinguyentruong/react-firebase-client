@@ -13,12 +13,11 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 
 import { useSelector, useDispatch } from "react-redux";
-import { uploadImage, logoutUser, getUserData } from '../redux/userReducer'
+import { uploadImage, logoutUser } from '../redux/userReducer'
 
 import { Link as RouterLink} from 'react-router-dom';
 
 import dayjs from "dayjs";
-import axios from "axios";
 
 const useStyles = makeStyles({
   uploadButton: {
@@ -81,13 +80,11 @@ export default function Profile() {
   //   return null
   // })
   function handleImageChange(e) {
-    console.log(e.target)
     const image = e.target.files[0]
     console.log(image)
     const formData = new FormData()
-    console.log(formData)
-    formData.append('image', image)
-
+    formData.append('image', image, image.name)
+    dispatch(uploadImage(formData))
     // keep getting 400 error, will fix later
   }
 

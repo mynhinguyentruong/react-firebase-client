@@ -14,10 +14,11 @@ export default function Home() {
 
   const dispatch = useDispatch()
   const { screams, loading } = useSelector(state => state.data)
+  const { credentials: {imageUrl} } = useSelector(state => state.user)
 
   useEffect(() => {
     dispatch(getScreams())
-  }, [])
+  }, [imageUrl])
 
   let recentScreamsMarkup = screams?.map(scream => <Scream key={scream.screamId} {...scream} scream={scream} />)
 

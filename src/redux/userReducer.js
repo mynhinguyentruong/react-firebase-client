@@ -111,7 +111,13 @@ export function markNotificationsRead(notificationIds) {
 const initialState = {
   authenticated: false,
   loading: false,
-  credentials: {},
+  credentials: {
+    email: '',
+    handle: '',
+    imageUrl: '',
+    userId: '',
+    createdAt: ''
+  },
   likes: [],
   notifications: []
 }
