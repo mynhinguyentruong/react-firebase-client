@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Navbar from './components/Navbar';
+import User from './pages/User';
 
 import jwtDecode from 'jwt-decode';
 
@@ -41,7 +42,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={ authenticated ? <Navigate to='/' replace /> : <Login />} />
         <Route path='/signup' element={ authenticated ? <Navigate to='/' replace/> : <Signup />} />
-
+        <Route path='/users/:handle' element={<User/>}/>
       </Routes>
     </div>
   );

@@ -18,7 +18,8 @@ export default function CommentForm({ authenticated, screamId }) {
     e.preventDefault()
     if (body.trim() !== '') {
       dispatch(submitComment(screamId, {body}))
-      setBody('')
+      setTimeout(() => setBody(''), 1500)
+      
     } else dispatch(setCommentError())
   }
 

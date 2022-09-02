@@ -119,11 +119,11 @@ export function getUserData(userHandle) {
     axios
       .get(`/user/${userHandle}`)
       .then(res => dispatch({
-        type: "SET_SCREAMS",
+        type: "SET_USER_SCREAMS",
         payload: res.data.screams
       }))
       .catch(() => dispatch({
-        type: "SET_SCREAMS",
+        type: "SET_USER_SCREAMS",
         payload: null
       }))
   }
@@ -137,6 +137,7 @@ export function getUserData(userHandle) {
 
 const initialState = {
   screams: [],
+  userScreams: [],
   scream: {},
   loading: false
 }
@@ -151,6 +152,12 @@ export default function dataReducer(state = initialState, action) {
       return {
         ...state,
         screams: action.payload,
+        loading: false
+      }
+    case 'SET_USER_SCREAMS':
+      return {
+        ...state,
+        userScreams: action.payload,
         loading: false
       }
     case 'SET_SCREAM':
