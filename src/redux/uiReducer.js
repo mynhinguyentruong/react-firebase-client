@@ -7,6 +7,10 @@ export function setBodyError() {
   return { type: "SET_BODY_ERRORS"}
 }
 
+export function setCommentError() {
+  return { type: "SET_COMMENT_ERRORS"}
+}
+
 const initialState = {
   isLoading: false,
   errors: {}
@@ -25,6 +29,12 @@ export default function uiReducer(state = initialState, action) {
         ...state,
         isLoading: false,
         errors: {...state.errors, body: "Come on! Your scream cannot be empty!"}
+      }
+    case 'SET_COMMENT_ERRORS':
+      return {
+        ...state,
+        isLoading: false,
+        errors: {...state.errors, comment: "Your friend would appreciate if you scream back at them 😈"}
       }
     case 'CLEAR_ERRORS':
       return {

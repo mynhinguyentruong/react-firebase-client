@@ -98,7 +98,7 @@ export function deleteScream(screamId) {
 export function submitComment(screamId, commentData) {
   return function(dispatch) {
     axios
-      .post(`/scream/${screamId}/comment`, commentData)
+      .post(`/scream/${screamId}`, commentData)
       .then(res => {
         dispatch({
         type: "SUBMIT_COMMENT",
@@ -182,7 +182,8 @@ export default function dataReducer(state = initialState, action) {
         scream: {
           ...state.scream,
           comments: [action.payload, ...state.scream.comments]
-        }
+        },
+        screams: state.screams.map(scream => scream.screamId === action.payload.screamId ? {...scream, commentCount: scream.commentCount + 1} : scream)
       }
     default:
       return state

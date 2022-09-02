@@ -1,5 +1,8 @@
 import MyButton from "../utils/MyButton";
 import LikeButton from "./LikeButton";
+import Comments from "./comments/Comments";
+import CommentForm from "./comments/CommentForm";
+
 import makeStyles  from "@material-ui/styles/makeStyles";
 // MUI 
 import Dialog from '@material-ui/core/Dialog';
@@ -48,6 +51,7 @@ const useStyles = makeStyles({
 export default function ScreamDialog({ body, createdAt, userImage, userHandle, commentCount, likeCount, screamId, likedScream, authenticated }) {
   const [isOpen, setIsOpen] = useState(false)
   const { isLoading } = useSelector(state => state.ui)
+  const { scream } = useSelector(state => state.data)
   const dispatch = useDispatch()
   const classes = useStyles()
   
@@ -114,8 +118,8 @@ export default function ScreamDialog({ body, createdAt, userImage, userHandle, c
           <span>{commentCount} Comments</span>
         </Grid>
         <hr className={classes.visibleSeparator} />
-        {/* <CommentForm screamId={screamId} />
-        <Comments comments={comments} /> */}
+        <CommentForm screamId={screamId} authenticated={authenticated} />
+        <Comments comments={scream?.comments} dayjs={dayjs} />
       </Grid>)}
       </DialogContent>
     </Dialog>
