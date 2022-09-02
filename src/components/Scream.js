@@ -81,7 +81,7 @@ function Scream({  body, createdAt, userImage, userHandle, commentCount, likeCou
         <span>{commentCount} Comments</span>
         <ScreamDialog {...scream} authenticated={authenticated} likedScream={likedScream}/>
       </CardContent>
-      {isOwner && <DeleteDialog  />}
+      {isOwner && <DeleteDialog screamId={screamId} />}
     </Card>
   )
 }

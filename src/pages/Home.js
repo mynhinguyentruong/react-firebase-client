@@ -18,7 +18,7 @@ export default function Home() {
 
   useEffect(() => {
     dispatch(getScreams())
-  }, [imageUrl])
+  }, [imageUrl, dispatch])
 
   let recentScreamsMarkup = screams?.map(scream => <Scream key={scream.screamId} {...scream} scream={scream} />)
 
