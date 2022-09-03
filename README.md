@@ -58,7 +58,9 @@
 * How can I ensure to bring a seamless user experience?
 * How can I ensure my web app is secure? My codebase is free of errors and maintainable?
 
-These are the questions I asked myself to determine what technogies should I use and what would help me achieve my goals! Why?
+These are the questions I asked myself to determine what technogies should I use and what would help me achieve my goals! 
+
+Why?
 
 Here's why:
 * You want your users to forever stay on the website and get sucked into it
@@ -119,10 +121,11 @@ Make sure that you are using npm v16.0.0 or above.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+<img src="screenshots/screenshot-2.png" alt="backend server testing" width="30%"/>
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+**You can test the Server API with Postman!**
 
+View Backend Code<a href="https://github.com/mynhinguyentruong/react-firebase"><strong> here </strong></a>
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -134,7 +137,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [x] Customize the backend more with ExpressJS
       Although Firebase has already included some backend errors handling. However, to ensure better user experience, I decided to customize some handling errors functions in the backend. 
 - [x] Initiate frontend web app with create-react-app
-- [x] Add app into production by running ```sh npm run build ```
+- [x] Add app into production by running ``` npm run build ```
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
