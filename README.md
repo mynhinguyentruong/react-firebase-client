@@ -11,6 +11,8 @@
     <br />
     <br />
     <a href="http://react-firebase-client.vercel.app/"><strong>View Demo</strong></a>
+    <br />
+    <br />
     <a href="https://github.com/mynhinguyentruong/react-firebase"><strong>View Backend Code</strong></a>
   </p>
 </div>
@@ -48,13 +50,19 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
+<img src="screenshots/screenshot-1.png" width="60%" alt="Web app screenshot" />
 
-Context:
+**Context:**
+* How can I build a blazing fast social media platform web application?
+* How can I ensure to bring a seamless user experience?
+* How can I ensure my web app is secure? My codebase is free of errors and maintainable?
+
+These are the questions I asked myself to determine what technogies should I use and what would help me achieve my goals! Why?
 
 Here's why:
-* Reason 1
-* Reason 2
+* You want your users to forever stay on the website and get sucked into it
+* Your users' private information need to be secured so that they can rely on your web technologies and continue using
 * You should implement DRY principles to the rest of your life :smile:
 
 
@@ -65,10 +73,15 @@ Here's why:
 
 ### Built With
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
+The technogies, frameworks, libraries behind this web app 🔥🔥🔥.
 
 * **React**
+* **ExpressJS**
 * **Firebase**
+* **Postman**
+* **Redux**
+* **React-Router-Dom**
+* **Material UI**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -92,15 +105,11 @@ Make sure that you are using npm v16.0.0 or above.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
+   git clone https://github.com/mynhinguyentruong/react-firebase-client.git
    ```
 3. Install NPM packages
    ```sh
    npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -121,15 +130,12 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+- [x] Add Firebase as backend server
+- [x] Customize the backend more with ExpressJS
+-       Although Firebase has already included some backend errors handling. However, to ensure better user experience, I decided to customize some handling errors functions in the backend. 
+- [x] Initiate frontend web app with create-react-app
+- [x] Add app into production by running 
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -167,7 +173,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 Nhi Nguyen - [@highfunctioning.sociopathh](https://www.instagram.com/highfunctioning.sociopathh/) - nhi.nguyen27@outlook.com
 
-Project Link: [View Code On Github](https://github.com/mynhinguyentruong/chatapp/tree/main/src)
+Project Link: [View Code On Github](https://github.com/mynhinguyentruong/react-firebase-client)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -205,7 +211,7 @@ Use this space to list resources you find helpful and would like to give credit 
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: <img src="screenshots/screenshot-1.png" width="100" />
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
