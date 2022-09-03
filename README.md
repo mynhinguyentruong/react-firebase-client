@@ -132,9 +132,9 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 
 - [x] Add Firebase as backend server
 - [x] Customize the backend more with ExpressJS
--       Although Firebase has already included some backend errors handling. However, to ensure better user experience, I decided to customize some handling errors functions in the backend. 
+      Although Firebase has already included some backend errors handling. However, to ensure better user experience, I decided to customize some handling errors functions in the backend. 
 - [x] Initiate frontend web app with create-react-app
-- [x] Add app into production by running 
+- [x] Add app into production by running ```sh npm run build ```
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
